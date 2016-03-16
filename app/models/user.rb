@@ -2,9 +2,8 @@
 class User < ActiveRecord::Base
 
 	has_many :questions
-
-	has_many :answers
-	has_many :questions, through: :appointments
+	has_many :answers_received, through: :questions, source: :answers
+	has_many :answers_written, class_name: "Answer", foreign_key: "user_id"
 
 	validates :email, uniqueness: true
 
